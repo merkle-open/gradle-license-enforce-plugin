@@ -46,7 +46,7 @@ gradlePlugin {
     plugins {
         register("com.namics.oss.gradle.license-enforce-plugin") {
             id = "com.namics.oss.gradle.license-enforce-plugin"
-            implementationClass = "com.namics.oss.gradle.license.LicensesEnforcePlugin"
+            implementationClass = "com.namics.oss.gradle.license.LicenseEnforcePlugin"
         }
     }
 }
@@ -60,6 +60,7 @@ pluginBundle {
         "com.namics.oss.gradle.license-enforce-plugin" {
             // id is captured from java-gradle-plugin configuration
             displayName = "Gradle dependency licenses enforcement plugin"
+            description = "Under development! Gradle dependency licenses enforcement plugin"
             tags = listOf("dependency-management", "license", "enforce")
             version = project.version.toString()
         }
