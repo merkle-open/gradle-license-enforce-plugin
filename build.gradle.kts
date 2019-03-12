@@ -11,7 +11,7 @@ plugins {
 
 group = "com.namics.oss.gradle.license"
 description = "Gradle plugin enforces licenses of dependencies to comply with definitions."
-version = "1.0-SNAPSHOT"
+version = "1.0.1-SNAPSHOT"
 
 dependencies {
     compile("org.slf4j:slf4j-api:1.7.26")
