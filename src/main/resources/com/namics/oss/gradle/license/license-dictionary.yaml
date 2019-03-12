@@ -1,0 +1,263 @@
+---
+id: Apache-2.0
+category: Apache
+name: Apache License 2.0
+url: https://opensource.org/licenses/Apache-2.0
+names:
+  - Apache 2.0
+  - Apache License 2.0
+  - Apache License v2
+  - Apache License, Version 2.0
+  - Apache License, version 2.0
+  - The Apache Software License
+  - The Apache Software License 2.0
+  - The Apache Software License, Version 2.0
+  - The Apache License, Version 2.0
+urls:
+  - http://www.apache.org/licenses/LICENSE-2.0.txt
+  - https://www.apache.org/licenses/LICENSE-2.0.txt
+  - http://www.apache.org/licenses/LICENSE-2.0
+  - https://www.apache.org/licenses/LICENSE-2.0
+  - http://opensource.org/licenses/Apache-2.0
+  - https://opensource.org/licenses/Apache-2.0
+  - http://apache.org/licenses/LICENSE-2.0
+
+---
+id: BCL
+category: BCL
+name: Bouncy Castle Licence
+url: http://www.bouncycastle.org/licence.html
+
+---
+id: BSD-2-Clause
+category: BSD
+name: The 2-Clause BSD License
+url: https://opensource.org/licenses/BSD-2-Clause
+names:
+  - BSD 2-Clause "Simplified" License
+urls:
+  - http://opensource.org/licenses/BSD-2-Clause
+  - https://opensource.org/licenses/BSD-2-Clause
+
+---
+id: BSD-3-Clause
+category: BSD
+name: The 3-Clause BSD License
+url: https://opensource.org/licenses/BSD-3-Clause
+names:
+  - BSD
+  - BSD License
+  - The BSD License
+  - BSD 3-Clause "New" or "Revised" License
+  - BSD 3-Clause New License
+urls:
+  - http://opensource.org/licenses/BSD-3-Clause
+  - https://opensource.org/licenses/BSD-3-Clause
+  - http://www.opensource.org/licenses/bsd-license.php
+
+---
+id: CC0
+category: CC0
+name: Creative Commons Zero
+url: http://creativecommons.org/publicdomain/zero/1.0
+names:
+  - Public Domain, per Creative Commons CC0
+urls:
+  - http://creativecommons.org/publicdomain/zero/1.0
+  - http://creativecommons.org/publicdomain/zero/1.0/
+  - https://creativecommons.org/publicdomain/zero/1.0
+  - https://creativecommons.org/publicdomain/zero/1.0/
+
+---
+id: CDDL-1.0
+category: CDDL
+name:  Common Development and Distribution License 1.0
+url: https://opensource.org/licenses/CDDL-1.0
+names:
+  - CDDL
+  - Common Development and Distribution License (CDDL) v1.0
+  - CDDL License
+urls:
+  - https://glassfish.dev.java.net/public/CDDLv1.0.html
+  - https://opensource.org/licenses/cddl1.txt
+  - https://opensource.org/licenses/CDDL-1.0
+  - http://www.opensource.org/licenses/cddl1.php
+
+---
+id: CPL-1.0
+category: CPL
+name: Common Public License Version 1.0 (CPL)
+url: https://opensource.org/licenses/CPL-1.0
+names:
+  - Common Public License Version 1.0 (CPL)
+  - Common Public License, version 1.0 (CPL-1.0)
+  - CPL
+urls:
+  - http://www.opensource.org/licenses/cpl1.0.txt
+  - https://opensource.org/licenses/CPL-1.0
+
+---
+id: EPL-1.0
+category: EPL
+name: Eclipse Public License 1.0
+url: https://opensource.org/licenses/EPL-1.0
+names:
+  - Eclipse Public License 1.0
+  - Eclipse Public License - v 1.0
+urls:
+  - http://www.eclipse.org/legal/epl-v10.html
+  - https://opensource.org/licenses/EPL-1.0
+
+---
+id: EPL-2.0
+category: EPL
+name: Eclipse Public License 2.0
+url: https://opensource.org/licenses/EPL-2.0
+names:
+  - Eclipse Public License 2.0
+  - Eclipse Public License - v 2.0
+urls:
+  - http://www.eclipse.org/org/documents/epl-2.0/EPL-2.0
+  - https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0
+  - https://opensource.org/licenses/EPL-1.0
+  - http://opensource.org/licenses/EPL-2.0
+
+---
+id: EDL-1.0
+category: BSD
+name: Eclipse Distribution License 1.0
+url: http://www.eclipse.org/org/documents/edl-v10.php
+names:
+  - Eclipse Distribution License v. 1.0
+  - Eclipse Distribution License 1.0
+urls:
+  - http://www.eclipse.org/org/documents/edl-v10.php
+  - https://www.eclipse.org/org/documents/edl-v10.php
+  - http://www.eclipse.org/org/documents/edl-v10.html
+  - https://www.eclipse.org/org/documents/edl-v10.html
+
+---
+id: GPL-2.0
+category: GPL
+name: GNU General Public License v2.0
+url: https://opensource.org/licenses/GPL-2.0
+names:
+  - GNU General Public License v2.0
+  - GNU General Public License 2.0
+urls:
+  - http://www.gnu.org/licenses/gpl-2.0
+  - https://www.gnu.org/licenses/gpl-2.0
+  - http://opensource.org/licenses/GPL-2.0
+  - https://opensource.org/licenses/GPL-2.0
+
+---
+id: GPLv2+CE
+category: GPLv2+CE
+name: GNU General Public License v2.0 with classpath exception
+url: https://www.gnu.org/software/classpath/license.html
+names:
+  - GNU General Public License v2.0 with classpath exception
+  - GNU General Public License, version 2 with the GNU Classpath Exception
+  - CDDL/GPLv2+CE
+  - CDDL + GPLv2 with classpath exception
+  - GPL2 w/ CPE
+urls:
+  - https://www.gnu.org/software/classpath/license.html
+  - https://spdx.org/licenses/GPL-2.0-with-classpath-exception.html
+
+---
+id: GPL-3.0
+category: GPL
+name: GNU General Public License v3.0
+url: https://opensource.org/licenses/GPL-3.0
+names:
+  - GNU General Public License v3.0
+  - GNU General Public License 3.0
+urls:
+  - http://www.gnu.org/licenses/gpl-3.0
+  - https://www.gnu.org/licenses/gpl-3.0
+  - http://opensource.org/licenses/GPL-3.0
+  - https://opensource.org/licenses/GPL-3.0
+
+---
+id: LGPL-2.1
+category: LGPL
+name: GNU Lesser General Public License v2.1
+url: https://opensource.org/licenses/LGPL-2.1
+names:
+  - GNU Lesser General Public License 2.1
+  - GNU Lesser General Public License v2.1
+urls:
+  - http://www.gnu.org/licenses/lgpl-2.1
+  - https://www.gnu.org/licenses/lgpl-2.1
+  - http://opensource.org/licenses/LGPL-2.1
+  - https://opensource.org/licenses/LGPL-2.1
+  - http://www.opensource.org/licenses/LGPL-2.1
+  - http://www.gnu.org/licenses/lgpl-2.1.html
+
+---
+id: LGPL-3.0
+category: LGPL
+name: GNU Lesser General Public License v3.0
+url: https://opensource.org/licenses/LGPL-3.0
+names:
+  - GNU Lesser General Public License
+  - GNU Lesser General Public License 3.0
+  - GNU Lesser General Public License v3.0
+  - GNU Lesser General Public License v3.0 or later
+  - GNU Library General Public License v3.0 or later
+  - GNU Lesser General Public License v2.1 or later
+  - GNU Library General Public License v2.1 or later
+  - GNU Lesser General Public License (LGPL), version 2.1 or later
+urls:
+  - http://www.gnu.org/licenses/lgpl.html
+  - http://www.gnu.org/licenses/lgpl-3.0
+  - https://www.gnu.org/licenses/lgpl-3.0
+  - http://opensource.org/licenses/LGPL-3.0
+  - https://opensource.org/licenses/LGPL-3.0
+  - http://www.opensource.org/licenses/LGPL-3.0
+  - http://www.gnu.org/licenses/lgpl-3.0.html
+
+---
+id: HSQLDB
+category: BSD
+name: HSQLDB License
+url: http://hsqldb.org/web/hsqlLicense.html
+names:
+  - HSQLDB License, a BSD open source license
+urls:
+  - http://hsqldb.org/web/hsqlLicense.html
+
+---
+id: ISC
+category: ISC
+name: ISC License
+url: https://opensource.org/licenses/ISC
+urls:
+  - http://opensource.org/licenses/ISC
+  - https://opensource.org/licenses/ISC
+
+---
+id: MIT
+category: MIT
+name: MIT License
+url: https://opensource.org/licenses/MIT
+names:
+  - MIT License
+  - The MIT License
+urls:
+  - https//opensource.org/licenses/MIT
+  - https://opensource.org/licenses/MIT
+
+---
+id: MPL-2.0
+category: MPL
+name: Mozilla Public License 2.0
+url: https://opensource.org/licenses/MPL-2.0
+names:
+  - Mozilla Public License 2.0
+urls:
+  - http://www.mozilla.org/media/MPL/2.0/index
+  - https://www.mozilla.org/media/MPL/2.0/index
+  - http://opensource.org/licenses/MPL-2.0
+  - https://opensource.org/licenses/MPL-2.0
