@@ -27,7 +27,7 @@ public open class LicenseEnforceTask : DefaultTask() {
 
 
     init {
-        group = "license"
+        group = "enforce"
         description = "Enforces licenses of dependencies to comply with definitions."
     }
 
