@@ -53,7 +53,7 @@ gradlePlugin {
 
 pluginBundle {
     website = "https://www.namics.com"
-    vcsUrl = "https://git.namics.com/andre.schaefer/license-enforce-plugin"
+    vcsUrl = "https://github.com/andreschaefer/license-enforce-plugin"
     description = project.description
     tags = listOf("dependency-management", "license", "enforce")
     (plugins) {
