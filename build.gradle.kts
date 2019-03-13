@@ -1,6 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-version = "1.0.2"
 group = "com.namics.oss.gradle.license"
 description = "Gradle plugin enforces licenses of dependencies to comply with definitions."
 
@@ -10,6 +9,7 @@ plugins {
     `kotlin-dsl`
     id("com.gradle.plugin-publish") version "0.10.1"
     `java-gradle-plugin`
+    id("de.gliderpilot.semantic-release") version "1.4.0"
 }
 
 dependencies {
@@ -51,7 +51,7 @@ gradlePlugin {
 }
 
 pluginBundle {
-    website = "https://namics.github.io/license-enforce-plugin/"
+    website = "https://github.com/namics/license-enforce-plugin"
     vcsUrl = "https://github.com/namics/license-enforce-plugin"
     description = project.description
     tags = listOf("dependency-management", "license", "enforce")
