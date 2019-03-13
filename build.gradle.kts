@@ -72,7 +72,7 @@ pluginBundle {
 }
 
 if (!version.toString().endsWith("-SNAPSHOT")){
-    tasks.getByName("publish"){
-        dependsOn("publishPlugins")
+    tasks.getByName("release"){
+        finalizedBy("publishPlugins")
     }
 }
