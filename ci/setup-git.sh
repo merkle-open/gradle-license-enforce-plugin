@@ -6,7 +6,7 @@ git config --global user.name "Namics OSS CI"
 ORIGIN=`git config --get remote.origin.url`
 GITHUB="https://${GITHUB_TOKEN}@${ORIGIN#'https://'}"
 git remote add github $GITHUB
-git fetch github
+git fetch github --unshallow --tags
 
 if [ "$TRAVIS_PULL_REQUEST" == 'false' ]; then
 	git checkout -qf $TRAVIS_BRANCH
