@@ -32,17 +32,14 @@ cache:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
 
-install: ./gradlew assemble
+install: echo "skip install"
 
-script: ./gradlew check
-
-
-#deploy:
-#  - provider: script
-#    skip-cleanup: true
-#    script: source ci/setup-git.sh; ./gradlew publishPlugins -Pgradle.publish.key=$GRADLE_PUBLISH_KEY -Pgradle.publish.secret=$GRADLE_PUBLISH_SECRET
-#    on:
-#      tags: true
+script: |-
+  [ "${TRAVIS_PULL_REQUEST}" = "false" ] && \
+  source ci/setup-git.sh && \
+  ./gradlew check  && \
+  ./gradlew release -Dorg.ajoberstar.grgit.auth.username=${GITHUB_TOKEN} -Dorg.ajoberstar.grgit.auth.password -Dgradle.publish.key=${GRADLE_PUBLISH_KEY} -Dgradle.publish.secret=${GRADLE_PUBLISH_SECRET} --info --stacktrace || \
+  ./gradlew integTest build --info --stacktrace'
 
 notifications:
   email:
