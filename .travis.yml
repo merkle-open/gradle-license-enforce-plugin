@@ -1,8 +1,4 @@
 sudo: false
-addons:
-  apt:
-    packages:
-      - git
 language: java
 env:
   global:
@@ -35,11 +31,7 @@ cache:
 install: echo "skip install"
 
 script: |-
-  [ "${TRAVIS_PULL_REQUEST}" = "false" ] && \
-  source ci/setup-git.sh && \
-  ./gradlew check  && \
-  ./gradlew release -Dorg.ajoberstar.grgit.auth.username=${GITHUB_TOKEN} -Dorg.ajoberstar.grgit.auth.password -Dgradle.publish.key=${GRADLE_PUBLISH_KEY} -Dgradle.publish.secret=${GRADLE_PUBLISH_SECRET} --info --stacktrace || \
-  ./gradlew integTest build --info --stacktrace'
+  [ "${TRAVIS_PULL_REQUEST}" = "false" ] && source ci/setup-git.sh && ./gradlew release -Dorg.ajoberstar.grgit.auth.username=${GITHUB_TOKEN} -Dorg.ajoberstar.grgit.auth.password -Dgradle.publish.key=${GRADLE_PUBLISH_KEY} -Dgradle.publish.secret=${GRADLE_PUBLISH_SECRET} --info --stacktrace
 
 notifications:
   email:
