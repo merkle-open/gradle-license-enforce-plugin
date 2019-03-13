@@ -70,3 +70,9 @@ pluginBundle {
         version = project.version.toString()
     }
 }
+
+if (!version.toString().endsWith("-SNAPSHOT")){
+    tasks.getByName("publish"){
+        dependsOn("publishPlugins")
+    }
+}
