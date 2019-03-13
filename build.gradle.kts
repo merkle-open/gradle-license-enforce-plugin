@@ -11,7 +11,7 @@ plugins {
 
 group = "com.namics.oss.gradle.license"
 description = "Gradle plugin enforces licenses of dependencies to comply with definitions."
-version = "1.0.2-SNAPSHOT"
+version = "1.0.2"
 
 dependencies {
     compile("org.slf4j:slf4j-api:1.7.26")
@@ -52,8 +52,8 @@ gradlePlugin {
 }
 
 pluginBundle {
-    website = "https://github.com/andreschaefer/license-enforce-plugin"
-    vcsUrl = "https://github.com/andreschaefer/license-enforce-plugin"
+    website = "https://namics.github.io/license-enforce-plugin/"
+    vcsUrl = "https://github.com/namics/license-enforce-plugin"
     description = project.description
     tags = listOf("dependency-management", "license", "enforce")
     (plugins) {
