@@ -30,17 +30,14 @@ install: ./gradlew assemble
 
 script: ./gradlew check
 
+deploy:
+  - provider: script
+    skip-cleanup: true
+    script: ./gradlew publishPlugins
+    on:
+      tags: true
+
 notifications:
   email:
     on_success: never
     on_failure: never
-#deploy:
-#  - provider: script
-#    skip-cleanup: true
-#    script: ./gradlew publishPlugins
-#    on:
-#      branch: master
-#addons:
-#  apt:
-#    packages:
-#    - libxml2-utils
