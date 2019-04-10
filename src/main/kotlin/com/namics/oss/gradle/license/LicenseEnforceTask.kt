@@ -21,6 +21,8 @@ public open class LicenseEnforceTask : DefaultTask() {
     var allowedLicenses: List<String> = emptyList()
     @Input
     var failOnMissingLicenseInformation: Boolean = true
+    @Input
+    var analyseConfigurations: List<String> = listOf("compile", "api", "implementation")
 
     @Internal
     private val dictionary = LicenseDictionary()
@@ -35,7 +37,7 @@ public open class LicenseEnforceTask : DefaultTask() {
     fun enforce() {
         initializeDictionary()
 
-        val dependencies: List<Dependency> = DependencyAnalyser(project).analyse()
+        val dependencies: List<Dependency> = DependencyAnalyser(project, analyseConfigurations).analyse()
 
         val denied = dependencies
                 .filter { it.licenses.isNotEmpty() }

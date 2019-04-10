@@ -7,9 +7,10 @@ import org.gradle.api.artifacts.Configuration
 import org.gradle.kotlin.dsl.get
 import java.io.File
 
-public class DependencyAnalyser(val project: Project) {
+public class DependencyAnalyser(val project: Project,
+                                val analyseConfigurations: List<String>) {
 
-    fun analyse() : List<Dependency> {
+    fun analyse(): List<Dependency> {
         setupEnvironment()
         collectDependencies()
         return dependencyInformation()
@@ -37,10 +38,9 @@ public class DependencyAnalyser(val project: Project) {
         // Add POM information to our POM configuration
         val configurations = LinkedHashSet<Configuration>()
 
-        // Add "compile" configuration older java and android gradle plugins
-        configurations.addAll(project.getConfigurations().filter { it.getName() == "compile" })
-        configurations.addAll(project.getConfigurations().filter { it.getName() == "api" })
-        configurations.addAll(project.getConfigurations().filter { it.getName() == "implementation" })
+        project.getConfigurations()
+                .filter { analyseConfigurations.contains(it.getName()) }
+                .forEach { configurations.add(it) }
 
         configurations
                 .filter { it.isCanBeResolved }
@@ -51,7 +51,7 @@ public class DependencyAnalyser(val project: Project) {
                 .forEach { project.configurations.getByName(POM_CONFIGURATION).dependencies.add(project.dependencies.add(POM_CONFIGURATION, it)) }
     }
 
-    private fun dependencyInformation() : List<Dependency> {
+    private fun dependencyInformation(): List<Dependency> {
         val artifacts = project.getConfigurations().getByName(POM_CONFIGURATION).resolvedConfiguration.lenientConfiguration.artifacts
         return artifacts.map {
             val pom = it
