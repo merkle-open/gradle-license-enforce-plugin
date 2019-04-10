@@ -24,7 +24,7 @@ urls:
 
 ---
 id: BCL
-category: BCL
+category: BSD
 name: Bouncy Castle Licence
 url: http://www.bouncycastle.org/licence.html
 
@@ -35,9 +35,11 @@ name: The 2-Clause BSD License
 url: https://opensource.org/licenses/BSD-2-Clause
 names:
   - BSD 2-Clause "Simplified" License
+  - The New BSD License
 urls:
   - http://opensource.org/licenses/BSD-2-Clause
   - https://opensource.org/licenses/BSD-2-Clause
+  - http://www.opensource.org/licenses/bsd-license.html
 
 ---
 id: BSD-3-Clause
@@ -261,3 +263,13 @@ urls:
   - https://www.mozilla.org/media/MPL/2.0/index
   - http://opensource.org/licenses/MPL-2.0
   - https://opensource.org/licenses/MPL-2.0
+
+---
+id: WTFPL
+category: WTFPL
+name: Do What the Fuck You Want to Public License
+url: http://www.wtfpl.net/
+names:
+  - Do What the Fuck You Want to Public License
+urls:
+  - http://www.wtfpl.net
