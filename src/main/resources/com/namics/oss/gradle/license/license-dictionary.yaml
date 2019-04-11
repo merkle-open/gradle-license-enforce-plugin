@@ -27,10 +27,6 @@ id: BCL
 category: BSD
 name: Bouncy Castle Licence
 url: http://www.bouncycastle.org/licence.html
-names:
-  - Bouncy Castle Licence
-urls:
-  - http://www.bouncycastle.org/licence.html
 
 ---
 id: BSD-2-Clause
@@ -243,6 +239,7 @@ category: BSD
 name: HSQLDB License
 url: http://hsqldb.org/web/hsqlLicense.html
 names:
+  - HSQLDB License
   - HSQLDB License, a BSD open source license
 urls:
   - http://hsqldb.org/web/hsqlLicense.html
@@ -286,17 +283,9 @@ id: PUBLIC
 category: PUBLIC
 name: Public Domain
 url: https://en.wikipedia.org/wiki/Public_domain
-names:
-  - Public Domain
-urls:
-  - https://en.wikipedia.org/wiki/Public_domain
 
 ---
 id: WTFPL
 category: WTFPL
 name: Do What the Fuck You Want to Public License
 url: http://www.wtfpl.net/
-names:
-  - Do What the Fuck You Want to Public License
-urls:
-  - http://www.wtfpl.net
