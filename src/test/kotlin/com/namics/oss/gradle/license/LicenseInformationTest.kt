@@ -1,6 +1,8 @@
 package com.namics.oss.gradle.license
 
 import org.junit.jupiter.api.Test
+import java.io.BufferedReader
+import java.io.InputStreamReader
 import kotlin.test.assertEquals
 
 /**
@@ -40,5 +42,13 @@ class LicenseInformationTest {
         assertEquals(license.name, "Apache License 2.0")
         assertEquals(license.url, "https://opensource.org/licenses/Apache-2.0")
         assertEquals(license.category, "Apache")
+    }
+
+
+    @Test
+    fun bundled() {
+        val systemUnderTest = LicenseDictionary()
+        val resource = BufferedReader(InputStreamReader(LicenseDictionary::class.java.getResourceAsStream("license-dictionary.yaml"))).readText()
+        systemUnderTest.addConfig(resource)
     }
 }
