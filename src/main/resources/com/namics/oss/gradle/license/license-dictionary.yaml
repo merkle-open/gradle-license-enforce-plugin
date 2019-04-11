@@ -27,6 +27,10 @@ id: BCL
 category: BSD
 name: Bouncy Castle Licence
 url: http://www.bouncycastle.org/licence.html
+names:
+  - Bouncy Castle Licence
+urls:
+  - http://www.bouncycastle.org/licence.html
 
 ---
 id: BSD-2-Clause
@@ -283,6 +287,10 @@ id: PUBLIC
 category: PUBLIC
 name: Public Domain
 url: https://en.wikipedia.org/wiki/Public_domain
+names:
+  - Public Domain
+urls:
+  - https://en.wikipedia.org/wiki/Public_domain
 
 ---
 id: WTFPL
