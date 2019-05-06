@@ -102,7 +102,8 @@ public open class LicenseEnforceTask : DefaultTask() {
         return dependency.licenses.any { allowed(it) }
     }
 
-    private fun allowedDependency(dependency: Dependency) = allowedDependencies.contains(dependency.id)
+    private fun allowedDependency(dependency: Dependency)
+            = allowedDependencies.map { Dependency(it, emptyList()) }.any { dependency.matches(it) }
 
     private fun allowed(license: License): Boolean {
         return allowedLicenses.contains(license.name)
