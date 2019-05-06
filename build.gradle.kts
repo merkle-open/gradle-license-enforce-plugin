@@ -10,6 +10,7 @@ plugins {
     id("com.gradle.plugin-publish") version "0.10.1"
     `java-gradle-plugin`
     id("de.gliderpilot.semantic-release") version "1.4.0"
+    id("com.github.hierynomus.license-base") version "0.15.0"
 }
 
 dependencies {
@@ -75,4 +76,8 @@ if (!version.toString().endsWith("-SNAPSHOT")){
     tasks.getByName("release"){
         finalizedBy("publishPlugins")
     }
+}
+
+tasks.create("licenseHeader"){
+    dependsOn("licenseFormatMain", "licenseFormatTest")
 }
