@@ -21,6 +21,32 @@ Invoke:
 gradle enforceLicenses
 ```
 
+### Custom configurations
+
+```kotlin
+tasks.enforceLicenses {
+  failOnMissingLicenseInformation = false
+  allowedCategories = listOf("Apache", "BSD", "LGPL", "MIT", "ISC", "MPL", "GPLv2+CE", "WTFPL", "EPL", "CDDL", "CPL", "CC0")
+  allowedDependencies = listOf(
+    "this.is.good.licensed:artifact:1.0",
+    "this.is.good.licensed:ignoreVersionArtifact"
+  )
+  dictionaries = listOf("my-additional-dict.yml")
+  allowedLicenses = listOf("My Wonderful License")
+  analyseConfigurations = listOf("compile", "api", "implementation")
+}
+```
+
+#### Options to control additional license information
+
+You may
+- customize dictionaries
+    - all dictionaries are additive
+    - add a `license-dictionary.yaml` to your project.projectDir (convention for project specific dictionaries)
+    - place a `yaml`somewhere else and add it to the task configuration `dictionaries`
+    - contribute to the bundled dictionary
+- add specific `allowedDependencies` or `allowedLicenses` to the task configuration
+
 ## Development
 
 ### Commit Message Format
