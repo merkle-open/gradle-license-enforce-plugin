@@ -26,7 +26,6 @@ package com.namics.oss.gradle.license
 import org.gradle.api.DefaultTask
 import org.gradle.api.GradleException
 import org.gradle.api.tasks.Input
-import org.gradle.api.tasks.Internal
 import org.gradle.api.tasks.TaskAction
 import java.io.BufferedReader
 import java.io.File
@@ -47,7 +46,6 @@ public open class LicenseEnforceTask : DefaultTask() {
     @Input
     var analyseConfigurations: List<String> = listOf("compile", "api", "implementation")
 
-    @Internal
     private val dictionary = LicenseDictionary()
 
 

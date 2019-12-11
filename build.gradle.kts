@@ -4,26 +4,27 @@ group = "com.namics.oss.gradle.license"
 description = "Gradle plugin enforces licenses of dependencies to comply with definitions."
 
 plugins {
-    val kotlinVersion = "1.3.20"
+    val kotlinVersion = "1.3.50"
     kotlin("jvm") version kotlinVersion
     `kotlin-dsl`
     id("com.gradle.plugin-publish") version "0.10.1"
     `java-gradle-plugin`
     id("de.gliderpilot.semantic-release") version "1.4.0"
     id("com.github.hierynomus.license-base") version "0.15.0"
+    id("com.github.ben-manes.versions") version "0.27.0"
 }
 
 dependencies {
-    compile("org.slf4j:slf4j-api:1.7.26")
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.9.8")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.8")
-    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.9.8")
+    compile("org.slf4j:slf4j-api:1.7.29")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.10.1")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.10.1")
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.10.1")
     implementation("org.dom4j:dom4j:2.1.1")
 
     testImplementation(kotlin("test"))
     testImplementation(kotlin("test-junit"))
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.4.0")
-    testRuntime("org.junit.jupiter:junit-jupiter-engine:5.4.0")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.5.2")
+    testRuntime("org.junit.jupiter:junit-jupiter-engine:5.5.2")
 }
 
 repositories {
@@ -80,4 +81,22 @@ if (!version.toString().endsWith("-SNAPSHOT")){
 
 tasks.create("licenseHeader"){
     dependsOn("licenseFormatMain", "licenseFormatTest")
+}
+
+tasks.named<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask>("dependencyUpdates") {
+    resolutionStrategy {
+        componentSelection {
+            all {
+                val rc = listOf("alpha", "beta", "rc", "cr", "m", "preview", "b", "ea", "pr").any { qualifier ->
+                    candidate.version.matches(Regex("(?i).*[.-]$qualifier[.\\d-+]*"))
+                }
+
+                if (rc) {
+                    reject("Release candidate")
+                }
+            }
+        }
+    }
+    checkForGradleUpdate = true
+    revision = "release"
 }
