@@ -87,10 +87,16 @@ public class DependencyAnalyser(val project: Project,
     }
 
 
-    private fun findLicenses(pomFile: File): List<License> {
+    fun findLicenses(pomFile: File): List<License> {
         try {
 
-            val doc = SAXReader().read(pomFile)
+            val reader = SAXReader(false)
+            reader.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+            reader.setFeature("http://xml.org/sax/features/external-general-entities", false);
+            reader.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+            reader.setFeature("http://xml.org/sax/features/namespaces", false);
+            reader.setFeature("http://xml.org/sax/features/namespace-prefixes", false);
+            val doc = reader.read(pomFile)
 
             if (ANDROID_SUPPORT_GROUP_ID == doc?.rootElement?.element("group")?.text) {
                 return listOf(License(name = APACHE_LICENSE_NAME, url = APACHE_LICENSE_URL))
@@ -108,7 +114,7 @@ public class DependencyAnalyser(val project: Project,
                 return findLicenses(getParentPomFile(parent))
 
         } catch (e: Throwable) {
-            project.logger.error("Failed to analyse {}", pomFile, e)
+            project.logger.warn("Failed to analyse {}", pomFile, e)
         }
         return emptyList()
     }
