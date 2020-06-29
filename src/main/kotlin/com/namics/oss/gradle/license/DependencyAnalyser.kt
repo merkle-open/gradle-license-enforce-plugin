@@ -91,9 +91,6 @@ public class DependencyAnalyser(val project: Project,
         try {
 
             val reader = SAXReader(false)
-            reader.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
-            reader.setFeature("http://xml.org/sax/features/external-general-entities", false);
-            reader.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
             reader.setFeature("http://xml.org/sax/features/namespaces", false);
             reader.setFeature("http://xml.org/sax/features/namespace-prefixes", false);
             val doc = reader.read(pomFile)
