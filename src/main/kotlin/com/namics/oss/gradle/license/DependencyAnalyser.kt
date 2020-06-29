@@ -49,6 +49,7 @@ public class DependencyAnalyser(val project: Project,
             try {
                 it.isCanBeResolved = true
             } catch (ignore: Exception) {
+                project.logger.info("cannot resolve configuration {}", it, ignore)
             }
         }
     }
@@ -87,23 +88,28 @@ public class DependencyAnalyser(val project: Project,
 
 
     private fun findLicenses(pomFile: File): List<License> {
-        val doc = SAXReader().read(pomFile)
+        try {
 
-        if (ANDROID_SUPPORT_GROUP_ID == doc?.rootElement?.element("group")?.text) {
-            return listOf(License(name = APACHE_LICENSE_NAME, url = APACHE_LICENSE_URL))
+            val doc = SAXReader().read(pomFile)
+
+            if (ANDROID_SUPPORT_GROUP_ID == doc?.rootElement?.element("group")?.text) {
+                return listOf(License(name = APACHE_LICENSE_NAME, url = APACHE_LICENSE_URL))
+            }
+
+            val lics = doc?.rootElement?.element("licenses")?.elements("license")
+                    ?.filterNotNull()
+                    ?.map { License(it.element("name")?.text ?: "", it.element("url")?.text ?: "") }
+
+            if (lics != null)
+                return lics
+
+            val parent = doc.rootElement.element("parent")
+            if (parent != null)
+                return findLicenses(getParentPomFile(parent))
+
+        } catch (e: Throwable) {
+            project.logger.error("Failed to analyse {}", pomFile, e)
         }
-
-        val lics = doc?.rootElement?.element("licenses")?.elements("license")
-                ?.filterNotNull()
-                ?.map { License(it.element("name")?.text ?: "", it.element("url")?.text ?: "") }
-
-        if (lics != null)
-            return lics
-
-        val parent = doc.rootElement.element("parent")
-        if (parent != null)
-            return findLicenses(getParentPomFile(parent))
-
         return emptyList()
     }
 
