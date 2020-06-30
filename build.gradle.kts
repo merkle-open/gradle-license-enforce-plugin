@@ -7,6 +7,7 @@ plugins {
     val kotlinVersion = "1.3.72"
     kotlin("jvm") version kotlinVersion
     `kotlin-dsl`
+    `maven-publish`
     id("com.gradle.plugin-publish") version "0.12.0"
     `java-gradle-plugin`
     id("de.gliderpilot.semantic-release") version "1.4.0"
@@ -15,11 +16,12 @@ plugins {
 }
 
 dependencies {
-    compile("org.slf4j:slf4j-api:1.7.30")
+    implementation("org.slf4j:slf4j-api:1.7.30")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.11.1")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.11.1")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.11.1")
     implementation("org.dom4j:dom4j:2.1.3")
+    implementation("xerces:xercesImpl:2.12.0")
 
     testImplementation(kotlin("test"))
     testImplementation(kotlin("test-junit"))

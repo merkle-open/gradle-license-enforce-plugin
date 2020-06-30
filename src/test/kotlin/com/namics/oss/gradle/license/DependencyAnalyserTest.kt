@@ -16,10 +16,16 @@ import java.io.File
  */
 internal class DependencyAnalyserTest {
 
+    val systemUnderTest = DependencyAnalyser(ProjectBuilder.builder().build(), emptyList())
 
     @Test
-    fun saxParserIssue() {
-        val systemUnderTest = DependencyAnalyser(ProjectBuilder.builder().build(), emptyList())
-        systemUnderTest.findLicenses(File(DependencyAnalyserTest::class.java.getResource("/xml/test.xml").file))
+    fun apache() {
+        systemUnderTest.findLicenses(File(DependencyAnalyserTest::class.java.getResource("/xml/apache.pom").file))
     }
+
+    @Test
+    fun logbackParent() {
+        systemUnderTest.findLicenses(File(DependencyAnalyserTest::class.java.getResource("/xml/logback-parent.pom").file))
+    }
+
 }
