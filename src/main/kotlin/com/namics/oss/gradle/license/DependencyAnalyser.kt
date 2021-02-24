@@ -28,7 +28,6 @@ import org.dom4j.Element
 import org.dom4j.io.SAXReader
 import org.gradle.api.Project
 import org.gradle.api.artifacts.Configuration
-import org.gradle.kotlin.dsl.get
 import java.io.File
 
 public class DependencyAnalyser(val project: Project,
@@ -132,15 +131,15 @@ public class DependencyAnalyser(val project: Project,
         // Add dependency to temporary configuration
         project.getConfigurations().create(TEMP_POM_CONFIGURATION)
 
-        project.getConfigurations().get(TEMP_POM_CONFIGURATION).dependencies.add(
+        project.getConfigurations().getByName(TEMP_POM_CONFIGURATION).dependencies.add(
                 project.getDependencies().add(TEMP_POM_CONFIGURATION, dependency)
         )
 
         // resolve file
-        val file = project.getConfigurations().get(TEMP_POM_CONFIGURATION).resolvedConfiguration.lenientConfiguration.artifacts.iterator().next().file
+        val file = project.getConfigurations().getByName(TEMP_POM_CONFIGURATION).resolvedConfiguration.lenientConfiguration.artifacts.iterator().next().file
 
         // cleanup
-        project.getConfigurations().remove(project.getConfigurations().get(TEMP_POM_CONFIGURATION))
+        project.getConfigurations().remove(project.getConfigurations().getByName(TEMP_POM_CONFIGURATION))
 
         return file
     }

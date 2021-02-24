@@ -23,10 +23,10 @@
  */
 package com.namics.oss.gradle.license
 
-import org.junit.jupiter.api.Test
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import kotlin.test.assertEquals
+import kotlin.test.Test
 
 /**
  * LicenseInformationTest.

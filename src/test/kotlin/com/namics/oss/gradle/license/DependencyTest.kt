@@ -23,9 +23,9 @@
  */
 package com.namics.oss.gradle.license
 
-import org.junit.jupiter.api.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
+import kotlin.test.Test
 
 /**
  * DependencyTest.

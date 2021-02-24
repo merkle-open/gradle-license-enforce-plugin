@@ -5,8 +5,8 @@
 package com.namics.oss.gradle.license
 
 import org.gradle.testfixtures.ProjectBuilder
-import org.junit.jupiter.api.Test
 import java.io.File
+import kotlin.test.Test
 
 /**
  * DependencyAnalyserTest.
