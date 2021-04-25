@@ -28,9 +28,7 @@ import org.gradle.api.GradleException
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
 import org.gradle.language.base.plugins.LifecycleBasePlugin
-import java.io.BufferedReader
 import java.io.File
-import java.io.InputStreamReader
 
 open class LicenseEnforceTask : DefaultTask() {
 
@@ -81,7 +79,7 @@ open class LicenseEnforceTask : DefaultTask() {
             throw GradleException(
                 "You are using dependencies licensed under a permitted license!"
                     + "\nYou may "
-                    + "\n- configure additional license mappings to license-dictionary.yaml in \$projectDir"
+                    + "\n- configure additional license mappings to $LICENSE_DICTIONARY_FILE_NAME in \$projectDir"
                     + "\n- add further dictionaries in task config"
                     + "\n- add allowed categories / licenses / dependencies in task config"
                     + "\ne.g.:"
@@ -136,20 +134,14 @@ open class LicenseEnforceTask : DefaultTask() {
     private fun allowedDependency(dependency: Dependency) =
         allowedDependencies.map { Dependency(it, emptyList()) }.any { dependency.matches(it) }
 
-    private fun allowed(license: License): Boolean {
-        return allowedLicenses.contains(license.name)
-            || allowedLicenses.contains(license.url)
-            || allowed(lookup(license))
-    }
+    private fun allowed(license: License) = allowedLicenses.contains(license.name)
+        || allowedLicenses.contains(license.url)
+        || allowed(lookup(license))
 
-    private fun lookup(license: License): LicenseDefinition? {
-        return dictionary.lookup(license.name) ?: dictionary.lookup(license.url)
-    }
+    private fun lookup(license: License) = dictionary.lookup(license.name) ?: dictionary.lookup(license.url)
 
-    private fun allowed(license: LicenseDefinition?): Boolean {
-        return license != null
-            && (allowedCategories.contains(license.category) || allowedLicenses.contains(license.id))
-    }
+    private fun allowed(license: LicenseDefinition?) =
+        license?.let { (allowedCategories.contains(license.category) || allowedLicenses.contains(license.id)) } ?: true
 
 
     private fun initializeDictionary() {
@@ -158,25 +150,27 @@ open class LicenseEnforceTask : DefaultTask() {
         addConfiguredDictionaries()
     }
 
-    private fun addProjectDictionary() {
-        val projectDictionary = File(project.projectDir, "license-dictionary.yaml")
-        if (projectDictionary.isFile)
-            dictionary.addConfig(projectDictionary.readText())
-    }
+    private fun addProjectDictionary() =
+        project.projectDir.resolve(LICENSE_DICTIONARY_FILE_NAME).takeIf {
+            it.isFile
+        }?.run {
+            dictionary.addConfig(readText())
+        }
 
-    private fun addBundledDictionary() {
-        val resource = BufferedReader(
-            InputStreamReader(LicenseEnforceTask::class.java.getResourceAsStream("license-dictionary.yaml"))
-        ).readText()
-        dictionary.addConfig(resource)
-    }
+    private fun addBundledDictionary() =
+        LicenseEnforceTask::class.java.getResource(LICENSE_DICTIONARY_FILE_NAME)?.run {
+            dictionary.addConfig(this.readText())
+        }
 
-    private fun addConfiguredDictionaries() {
+    private fun addConfiguredDictionaries() =
         dictionaries
             .map { File(it) }
             .filter { it.isFile }
             .map { it.readText() }
             .map { File(it).readText() }
             .forEach { dictionary.addConfig(it) }
+
+    companion object {
+        const val LICENSE_DICTIONARY_FILE_NAME = "license-dictionary.yaml"
     }
 }

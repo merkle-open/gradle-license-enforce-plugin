@@ -23,11 +23,11 @@
  */
 package com.namics.oss.gradle.license
 
-data class LicenseDefinition(
-    val id: String,
-    val category: String,
-    val name: String,
-    val url: String,
-    val names: MutableList<String> = mutableListOf(),
-    val urls: MutableList<String> = mutableListOf()
-)
+class LicenseDefinition {
+    lateinit var id: String
+    lateinit var category: String
+    lateinit var name: String
+    lateinit var url: String
+    var names: MutableList<String> = mutableListOf()
+    var urls: MutableList<String> = mutableListOf()
+}

@@ -1,4 +1,3 @@
-import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 group = "com.namics.oss.gradle.license"
@@ -21,11 +20,9 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
 
     implementation("org.slf4j:slf4j-api:1.7.30")
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.12.3")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.12.3")
-    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.3")
     implementation("org.dom4j:dom4j:2.1.3")
     implementation("xerces:xercesImpl:2.12.1")
+    implementation("org.yaml:snakeyaml:1.28")
 
     testImplementation(kotlin("test"))
     testImplementation(kotlin("test-junit5"))
