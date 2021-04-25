@@ -30,7 +30,7 @@ import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
 
 
-public class LicenseDictionary {
+class LicenseDictionary {
 
     private val byId: MutableMap<String, LicenseDefinition> = HashMap()
     private val byUrl: MutableMap<String, LicenseDefinition> = HashMap()
@@ -45,28 +45,28 @@ public class LicenseDictionary {
             mapper
         }
         val parser = yaml.createParser(data)
-        val definitions = mapper.readValues<LicenseDefinition>(parser, jacksonTypeRef<LicenseDefinition>()).readAll()
-        definitions.forEach { addDefintion(it) }
+        val definitions = mapper.readValues(parser, jacksonTypeRef<LicenseDefinition>()).readAll()
+        definitions.forEach { addDefinition(it) }
     }
 
-    private fun addDefintion(input: LicenseDefinition) {
+    private fun addDefinition(input: LicenseDefinition) {
         val candidate = byId.getOrPut(input.id.toLowerCase()) { input }
         candidate.names.add(input.name)
         candidate.names.addAll(input.names)
         candidate.urls.add(input.url)
         candidate.urls.addAll(input.urls)
 
-        byName.put(candidate.id.toLowerCase(), candidate)
-        byName.put(candidate.name.toLowerCase(), candidate)
-        candidate.names.forEach { byName.put(it.toLowerCase(), candidate) }
+        byName[candidate.id.toLowerCase()] = candidate
+        byName[candidate.name.toLowerCase()] = candidate
+        candidate.names.forEach { byName[it.toLowerCase()] = candidate }
 
-        byUrl.put(candidate.url.toLowerCase(), candidate)
-        candidate.urls.forEach { byUrl.put(it.toLowerCase(), candidate) }
+        byUrl[candidate.url.toLowerCase()] = candidate
+        candidate.urls.forEach { byUrl[it.toLowerCase()] = candidate }
     }
 
     fun lookup(representation: String): LicenseDefinition? {
         val key = representation.toLowerCase()
-        return byUrl.get(key) ?: byName.get(key)
+        return byUrl[key] ?: byName[key]
     }
 
     fun knownLicenses(): MutableCollection<LicenseDefinition> {

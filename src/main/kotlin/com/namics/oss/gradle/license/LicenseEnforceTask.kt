@@ -27,22 +27,28 @@ import org.gradle.api.DefaultTask
 import org.gradle.api.GradleException
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
+import org.gradle.language.base.plugins.LifecycleBasePlugin
 import java.io.BufferedReader
 import java.io.File
 import java.io.InputStreamReader
 
-public open class LicenseEnforceTask : DefaultTask() {
+open class LicenseEnforceTask : DefaultTask() {
 
     @Input
     var dictionaries: List<String> = mutableListOf()
+
     @Input
     var allowedDependencies: List<String> = emptyList()
+
     @Input
     var allowedCategories: List<String> = emptyList()
+
     @Input
     var allowedLicenses: List<String> = emptyList()
+
     @Input
     var failOnMissingLicenseInformation: Boolean = true
+
     @Input
     var analyseConfigurations: List<String> = listOf("compile", "api", "implementation")
 
@@ -50,7 +56,7 @@ public open class LicenseEnforceTask : DefaultTask() {
 
 
     init {
-        group = "enforce"
+        group = LifecycleBasePlugin.VERIFICATION_GROUP
         description = "Enforces licenses of dependencies to comply with definitions."
     }
 
@@ -61,17 +67,19 @@ public open class LicenseEnforceTask : DefaultTask() {
         val dependencies: List<Dependency> = DependencyAnalyser(project, analyseConfigurations).analyse()
 
         val denied = dependencies
-                .filter { it.licenses.isNotEmpty() }
-                .filter { !allowed(it) }
+            .filter { it.licenses.isNotEmpty() }
+            .filter { !allowed(it) }
 
         val noLicense = dependencies
-                .filter { it.licenses.isEmpty() }
-                .filter { !allowedDependency(it) }
+            .filter { it.licenses.isEmpty() }
+            .filter { !allowedDependency(it) }
 
         if (denied.isNotEmpty()) {
             val known = dictionary.knownLicenses()
 
-            throw GradleException("You are using dependencies licensed under a permitted license!"
+            @Suppress("MaxLineLength")
+            throw GradleException(
+                "You are using dependencies licensed under a permitted license!"
                     + "\nYou may "
                     + "\n- configure additional license mappings to license-dictionary.yaml in \$projectDir"
                     + "\n- add further dictionaries in task config"
@@ -98,7 +106,8 @@ public open class LicenseEnforceTask : DefaultTask() {
         if (noLicense.isNotEmpty()) {
             val report = noLicense.map { it.id }.joinToString(separator = "\n- ", prefix = "\n- ")
             if (failOnMissingLicenseInformation)
-                throw GradleException("You are using dependencies without licensing information!"
+                throw GradleException(
+                    "You are using dependencies without licensing information!"
                         + "\nYou may:"
                         + "\n- verify license manually and add it to allowedDependencies in task config"
                         + "\n- disable failOnMissingLicenseInformation in task config"
@@ -108,7 +117,8 @@ public open class LicenseEnforceTask : DefaultTask() {
                         + "\n\t    allowedDependencies = listOf(\"my.group:allowed.dependency:123\")"
                         + "\n\t}"
                         + "\n\nDependencies without license information: "
-                        + report)
+                        + report
+                )
             else {
                 logger.warn("Dependencies without license information: {}", report)
             }
@@ -123,13 +133,13 @@ public open class LicenseEnforceTask : DefaultTask() {
         return dependency.licenses.any { allowed(it) }
     }
 
-    private fun allowedDependency(dependency: Dependency)
-            = allowedDependencies.map { Dependency(it, emptyList()) }.any { dependency.matches(it) }
+    private fun allowedDependency(dependency: Dependency) =
+        allowedDependencies.map { Dependency(it, emptyList()) }.any { dependency.matches(it) }
 
     private fun allowed(license: License): Boolean {
         return allowedLicenses.contains(license.name)
-                || allowedLicenses.contains(license.url)
-                || allowed(lookup(license))
+            || allowedLicenses.contains(license.url)
+            || allowed(lookup(license))
     }
 
     private fun lookup(license: License): LicenseDefinition? {
@@ -138,7 +148,7 @@ public open class LicenseEnforceTask : DefaultTask() {
 
     private fun allowed(license: LicenseDefinition?): Boolean {
         return license != null
-                && (allowedCategories.contains(license.category) || allowedLicenses.contains(license.id))
+            && (allowedCategories.contains(license.category) || allowedLicenses.contains(license.id))
     }
 
 
@@ -155,16 +165,18 @@ public open class LicenseEnforceTask : DefaultTask() {
     }
 
     private fun addBundledDictionary() {
-        val resource = BufferedReader(InputStreamReader(LicenseEnforceTask::class.java.getResourceAsStream("license-dictionary.yaml"))).readText()
+        val resource = BufferedReader(
+            InputStreamReader(LicenseEnforceTask::class.java.getResourceAsStream("license-dictionary.yaml"))
+        ).readText()
         dictionary.addConfig(resource)
     }
 
     private fun addConfiguredDictionaries() {
         dictionaries
-                .map { File(it) }
-                .filter { it.isFile }
-                .map { it.readText() }
-                .map { File(it).readText() }
-                .forEach { dictionary.addConfig(it) }
+            .map { File(it) }
+            .filter { it.isFile }
+            .map { it.readText() }
+            .map { File(it).readText() }
+            .forEach { dictionary.addConfig(it) }
     }
 }
