@@ -164,7 +164,6 @@ public open class LicenseEnforceTask : DefaultTask() {
                 .map { File(it) }
                 .filter { it.isFile }
                 .map { it.readText() }
-                .map { File(it).readText() }
                 .forEach { dictionary.addConfig(it) }
     }
 }
