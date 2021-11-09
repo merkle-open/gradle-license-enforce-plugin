@@ -7,7 +7,7 @@ plugins {
     `maven-publish`
     id("com.gradle.plugin-publish") version "0.17.0"
     `java-gradle-plugin`
-    id("de.gliderpilot.semantic-release") version "1.4.2"
+    id("fr.brouillard.oss.gradle.jgitver") version "0.10.0-rc03"
     id("com.github.hierynomus.license-base") version "0.16.1"
     id("com.github.ben-manes.versions") version "0.39.0"
 }
@@ -49,6 +49,10 @@ gradlePlugin {
     }
 }
 
+jgitver {
+    useDistance = false
+}
+
 pluginBundle {
     website = "https://github.com/namics/gradle-license-enforce-plugin"
     vcsUrl = "https://github.com/namics/gradle-license-enforce-plugin"
@@ -67,12 +71,6 @@ pluginBundle {
         groupId = project.group.toString()
         artifactId = project.name
         version = project.version.toString()
-    }
-}
-
-if (!version.toString().endsWith("-SNAPSHOT")) {
-    tasks.getByName("release") {
-        finalizedBy("publishPlugins")
     }
 }
 
