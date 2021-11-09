@@ -1,10 +1,8 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 group = "com.namics.oss.gradle.license"
 description = "Gradle plugin enforces licenses of dependencies to comply with definitions."
 
 plugins {
-    kotlin("jvm") version "1.5.20"
+    kotlin("jvm") version embeddedKotlinVersion
     `kotlin-dsl`
     `maven-publish`
     id("com.gradle.plugin-publish") version "0.17.0"
@@ -15,8 +13,7 @@ plugins {
 }
 
 dependencies {
-    implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation(platform(kotlin("bom")))
 
     implementation("org.slf4j:slf4j-api:1.7.32")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.13.0")
@@ -25,7 +22,7 @@ dependencies {
     implementation("org.dom4j:dom4j:2.1.3")
     implementation("xerces:xercesImpl:2.12.1")
 
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
+    testImplementation(kotlin("test"))
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
 }
 
@@ -33,11 +30,9 @@ repositories {
     mavenCentral()
 }
 
-tasks.withType(KotlinCompile::class) {
-    kotlinOptions {
-        javaParameters = true
-        jvmTarget = "11"
-        freeCompilerArgs = listOf("-Xjsr305=strict")
+kotlin {
+    jvmToolchain {
+        (this as JavaToolchainSpec).languageVersion.set(JavaLanguageVersion.of(11))
     }
 }
 
@@ -75,13 +70,13 @@ pluginBundle {
     }
 }
 
-if (!version.toString().endsWith("-SNAPSHOT")){
-    tasks.getByName("release"){
+if (!version.toString().endsWith("-SNAPSHOT")) {
+    tasks.getByName("release") {
         finalizedBy("publishPlugins")
     }
 }
 
-tasks.create("licenseHeader"){
+tasks.create("licenseHeader") {
     dependsOn("licenseFormatMain", "licenseFormatTest")
 }
 
