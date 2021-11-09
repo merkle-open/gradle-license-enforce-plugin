@@ -4,30 +4,29 @@ group = "com.namics.oss.gradle.license"
 description = "Gradle plugin enforces licenses of dependencies to comply with definitions."
 
 plugins {
-    id("org.jetbrains.kotlin.jvm") version "1.4.20"
+    id("org.jetbrains.kotlin.jvm") version "1.5.20"
     `kotlin-dsl`
     `maven-publish`
-    id("com.gradle.plugin-publish") version "0.12.0"
+    id("com.gradle.plugin-publish") version "0.17.0"
     `java-gradle-plugin`
-    id("de.gliderpilot.semantic-release") version "1.4.0"
-    id("com.github.hierynomus.license-base") version "0.15.0"
-    id("com.github.ben-manes.versions") version "0.36.0"
+    id("de.gliderpilot.semantic-release") version "1.4.2"
+    id("com.github.hierynomus.license-base") version "0.16.1"
+    id("com.github.ben-manes.versions") version "0.39.0"
 }
 
 dependencies {
     implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
-    implementation("org.slf4j:slf4j-api:1.7.30")
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.12.0")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.12.0")
-    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.0")
+    implementation("org.slf4j:slf4j-api:1.7.32")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.13.0")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.0")
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.13.0")
     implementation("org.dom4j:dom4j:2.1.3")
     implementation("xerces:xercesImpl:2.12.1")
 
     testImplementation("org.jetbrains.kotlin:kotlin-test")
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.1")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
 }
 
 repositories {

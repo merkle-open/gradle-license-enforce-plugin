@@ -26,6 +26,7 @@ package com.namics.oss.gradle.license
 import com.fasterxml.jackson.core.JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
+import com.fasterxml.jackson.module.kotlin.KotlinFeature
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
 
@@ -40,7 +41,16 @@ public class LicenseDictionary {
         val yaml = YAMLFactory()
         val mapper = let {
             val mapper = ObjectMapper(yaml)
-            mapper.registerModule(KotlinModule())
+            mapper.registerModule(
+                KotlinModule.Builder()
+                    .withReflectionCacheSize(512)
+                    .configure(KotlinFeature.NullToEmptyCollection, false)
+                    .configure(KotlinFeature.NullToEmptyMap, false)
+                    .configure(KotlinFeature.NullIsSameAsDefault, false)
+                    .configure(KotlinFeature.SingletonSupport, false)
+                    .configure(KotlinFeature.StrictNullChecks, false)
+                    .build()
+            )
             mapper.configure(ALLOW_UNQUOTED_FIELD_NAMES, true)
             mapper
         }
