@@ -4,7 +4,7 @@ group = "com.namics.oss.gradle.license"
 description = "Gradle plugin enforces licenses of dependencies to comply with definitions."
 
 plugins {
-    id("org.jetbrains.kotlin.jvm") version "1.5.20"
+    kotlin("jvm") version "1.5.20"
     `kotlin-dsl`
     `maven-publish`
     id("com.gradle.plugin-publish") version "0.17.0"
@@ -36,7 +36,7 @@ repositories {
 tasks.withType(KotlinCompile::class) {
     kotlinOptions {
         javaParameters = true
-        jvmTarget = "1.8"
+        jvmTarget = "11"
         freeCompilerArgs = listOf("-Xjsr305=strict")
     }
 }
