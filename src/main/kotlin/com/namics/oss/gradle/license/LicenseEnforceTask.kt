@@ -155,7 +155,7 @@ public open class LicenseEnforceTask : DefaultTask() {
     }
 
     private fun addBundledDictionary() {
-        val resource = BufferedReader(InputStreamReader(LicenseEnforceTask::class.java.getResourceAsStream("license-dictionary.yaml"))).readText()
+        val resource = BufferedReader(InputStreamReader(LicenseEnforceTask::class.java.getResourceAsStream("license-dictionary.yaml")!!)).readText()
         dictionary.addConfig(resource)
     }
 

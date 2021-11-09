@@ -16,10 +16,8 @@ dependencies {
     implementation(platform(kotlin("bom")))
 
     implementation("org.slf4j:slf4j-api:1.7.32")
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.13.0")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.0")
-    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.13.0")
     implementation("org.dom4j:dom4j:2.1.3")
+    implementation("org.yaml:snakeyaml:1.29")
     implementation("xerces:xercesImpl:2.12.1")
 
     testImplementation(kotlin("test"))
@@ -29,11 +27,8 @@ dependencies {
 repositories {
     mavenCentral()
 }
-
-kotlin {
-    jvmToolchain {
-        (this as JavaToolchainSpec).languageVersion.set(JavaLanguageVersion.of(11))
-    }
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(8))
 }
 
 tasks.withType<Test> {

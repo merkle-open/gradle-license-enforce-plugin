@@ -12,7 +12,7 @@ jobs:
       - uses: actions/setup-java@v2
         with:
           distribution: 'zulu'
-          java-version: 11
+          java-version: 8
           java-package: jdk
       - run: chmod +x gradlew
       - run: ./gradlew test --info --stacktrace

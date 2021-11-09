@@ -29,12 +29,10 @@ import kotlin.test.assertEquals
 import kotlin.test.Test
 
 /**
- * LicenseInformationTest.
- *
  * @author aschaefer, Namics AG
  * @since 2019-03-11 12:12
  */
-class LicenseInformationTest {
+class LicenseDictionaryTest {
 
     @Test
     fun license() {
@@ -71,7 +69,7 @@ class LicenseInformationTest {
     @Test
     fun bundled() {
         val systemUnderTest = LicenseDictionary()
-        val resource = BufferedReader(InputStreamReader(LicenseDictionary::class.java.getResourceAsStream("license-dictionary.yaml"))).readText()
+        val resource = BufferedReader(InputStreamReader(LicenseDictionary::class.java.getResourceAsStream("license-dictionary.yaml")!!)).readText()
         systemUnderTest.addConfig(resource)
     }
 }
