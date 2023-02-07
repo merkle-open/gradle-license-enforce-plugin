@@ -17,7 +17,7 @@ dependencies {
 
     implementation("org.slf4j:slf4j-api:1.7.36")
     implementation("org.dom4j:dom4j:2.1.3")
-    implementation("org.yaml:snakeyaml:1.30")
+    implementation("org.yaml:snakeyaml:1.31")
     implementation("xerces:xercesImpl:2.12.2")
 
     testImplementation(kotlin("test"))
