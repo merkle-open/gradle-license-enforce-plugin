@@ -23,6 +23,7 @@
  */
 package com.namics.oss.gradle.license
 
+import org.yaml.snakeyaml.LoaderOptions
 import org.yaml.snakeyaml.Yaml
 import org.yaml.snakeyaml.constructor.Constructor
 
@@ -33,26 +34,26 @@ class LicenseDictionary {
     private val byUrl: MutableMap<String, LicenseDefinition> = HashMap()
     private val byName: MutableMap<String, LicenseDefinition> = HashMap()
 
-    fun addConfig(data: String) = Yaml(Constructor(LicenseDefinition::class.java)).loadAll(data).forEach {
+    fun addConfig(data: String) = Yaml(Constructor(LicenseDefinition::class.java, LoaderOptions())).loadAll(data).forEach {
         addDefinition(it as LicenseDefinition)
     }
 
     private fun addDefinition(input: LicenseDefinition) {
-        val candidate = byId.getOrPut(input.id.toLowerCase()) { input }
+        val candidate = byId.getOrPut(input.id.lowercase()) { input }
         candidate.names.add(input.name)
         candidate.names.addAll(input.names)
         candidate.urls.add(input.url)
         candidate.urls.addAll(input.urls)
 
-        byName[candidate.id.toLowerCase()] = candidate
-        byName[candidate.name.toLowerCase()] = candidate
-        candidate.names.forEach { byName[it.toLowerCase()] = candidate }
+        byName[candidate.id.lowercase()] = candidate
+        byName[candidate.name.lowercase()] = candidate
+        candidate.names.forEach { byName[it.lowercase()] = candidate }
 
-        byUrl[candidate.url.toLowerCase()] = candidate
-        candidate.urls.forEach { byUrl[it.toLowerCase()] = candidate }
+        byUrl[candidate.url.lowercase()] = candidate
+        candidate.urls.forEach { byUrl[it.lowercase()] = candidate }
     }
 
-    fun lookup(representation: String) = representation.toLowerCase().let { byUrl[it] ?: byName[it] }
+    fun lookup(representation: String) = representation.lowercase().let { byUrl[it] ?: byName[it] }
 
     fun knownLicenses() = byId.values
 }
