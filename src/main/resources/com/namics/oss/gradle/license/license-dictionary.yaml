@@ -323,3 +323,9 @@ id: WTFPL
 category: WTFPL
 name: Do What the Fuck You Want to Public License
 url: http://www.wtfpl.net/
+
+---
+id: GO
+category: GO
+name: Go License
+url: https://golang.org/LICENSE
